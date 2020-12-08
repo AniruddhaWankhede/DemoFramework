@@ -12,16 +12,15 @@ import constant.Constant;
 
 public class TestCaseRetryManager implements IRetryAnalyzer {
 
+	private static int count = 0;
 	// Annotated method is used for re-execution of failed tests considering retry count
     @Override
     public boolean retry(ITestResult iTestResult) {
-    	int count = 0;
+    	
     	if (!iTestResult.isSuccess()) {                      
             if (count < Constant.default_retry_count) {                            
                 count++;                                     
-                iTestResult.setStatus(ITestResult.FAILURE);
-                iTestResult.getMethod().setInvocationCount(iTestResult.getMethod().getInvocationCount() + 1);
-                
+                iTestResult.setStatus(ITestResult.SKIP);
                 return true;                                 
             } else {
                 iTestResult.setStatus(ITestResult.FAILURE);  
@@ -29,7 +28,8 @@ public class TestCaseRetryManager implements IRetryAnalyzer {
         } else {
             iTestResult.setStatus(ITestResult.SUCCESS);      
         }
-        
+    	
+    	iTestResult.getMethod().setInvocationCount(iTestResult.getMethod().getInvocationCount() + 1);
         return false;
     }
 }

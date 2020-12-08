@@ -15,11 +15,9 @@ import wrapper.ApiActions;
 
 public class ApiRepositoriesModule extends ApiActions {
 	
-	// Variables declaration
-	String uri = baseURI + "/orgs/django/repos";
-	
 	// This method is used to fetch repository names by rest API request
 	public List<String> fetchRepoNamesAPI() {
+		String uri = baseURI + "/orgs/django/repos";
 		Response response = httpGetRequest(uri);
 		List<String> lsRepoNames = readJsonListHTTPResponse(response, "name");
 		return lsRepoNames;
@@ -27,6 +25,7 @@ public class ApiRepositoriesModule extends ApiActions {
 	
 	// This method is used to fetch repository descriptions by rest API request
 	public List<String> fetchRepoDescAPI() {
+		String uri = baseURI + "/orgs/django/repos";
 		Response response = httpGetRequest(uri);
 		List<String> lsRepoDesc = readJsonListHTTPResponse(response, "description");
 		return lsRepoDesc;
