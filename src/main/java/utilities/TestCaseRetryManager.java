@@ -14,7 +14,7 @@ public class TestCaseRetryManager implements IRetryAnalyzer {
         if (!iTestResult.isSuccess()) {                      
             if (count < Constant.default_retry_count) {                            
                 count++;                                     
-                iTestResult.setStatus(ITestResult.SKIP);
+                iTestResult.setStatus(ITestResult.FAILURE);
                 iTestResult.getMethod().setInvocationCount(iTestResult.getMethod().getInvocationCount() + 1);
                 
                 return true;                                 

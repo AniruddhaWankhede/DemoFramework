@@ -32,6 +32,18 @@ public class TestContext {
 		return webDriver.get();
 	}
 	
+	public void removeDriver() {
+		try {
+			webDriver.get().quit();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		webDriver.remove();
+	}
+
+	
+	
 	
 	
 }

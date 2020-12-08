@@ -59,7 +59,7 @@ public class TestBase {
 	
 	@AfterMethod(alwaysRun = true)
 	public void terminateBrowser() {
-		TestContext.getInstance().getDriver().close();
+		TestContext.getInstance().removeDriver();
 		Constant.logger.info("Successfully terminated webdriver");
 	}
 	
