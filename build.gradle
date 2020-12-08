@@ -41,4 +41,8 @@ test{
 	useTestNG{
 		suites 'src/main/resources/Testngxml/TestNG.xml'
 	}
+	
+	systemProperty "url", System.getProperty("url")
+	systemProperty "browser", System.getProperty("browser")
+	systemProperty "apiuri", System.getProperty("apiuri")
 }

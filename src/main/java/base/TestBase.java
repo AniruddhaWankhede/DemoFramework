@@ -37,14 +37,12 @@ public class TestBase {
 		InputStream inStream = getClass().getClassLoader().getResourceAsStream(Constant.configPropertiesPath);
 	    Properties prop = new Properties();  
 	    prop.load(inStream);
-		
-	    url = prop.getProperty("url");
-	    browser = prop.getProperty("browser");
-	    apiURI = prop.getProperty("apiuri");
-	    baseURI = apiURI;
-	    timeout = Integer.parseInt(prop.getProperty("timeout"));
 	    initModules();
-	    initBrowser(browser);
+	    initBrowser(prop);
+	    initURL(prop);
+	    initApiUri(prop);
+
+	    timeout = Integer.parseInt(prop.getProperty("timeout"));
 	}
 	
 	@BeforeMethod(alwaysRun = true)
@@ -65,7 +63,14 @@ public class TestBase {
 		Constant.logger.info("Successfully terminated webdriver");
 	}
 	
-	public void initBrowser(String browser) {
+	public void initBrowser(Properties prop) {
+		
+		if(System.getProperty("browser") != null && !System.getProperty("browser").equals("")) {
+			browser = System.getProperty("browser");
+		} else {
+			browser = prop.getProperty("browser");
+		}
+		
 		if(browser.equalsIgnoreCase(Constant.chromeBrowser)) {
 	    	WebDriverManager.chromedriver().setup();
 	    } else if(browser.equalsIgnoreCase(Constant.ieBrowser)) {
@@ -73,6 +78,23 @@ public class TestBase {
 	    } else if(browser.equalsIgnoreCase(Constant.firefoxBrowser)) {
 	    	WebDriverManager.firefoxdriver().setup();
 	    }
+	}
+	
+	public void initURL(Properties prop) {
+		if(System.getProperty("url") != null && !System.getProperty("url").equals("")) {
+			url = System.getProperty("url");
+		} else {
+			url = prop.getProperty("url");
+		}
+	}
+	
+	public void initApiUri(Properties prop) {
+		if(System.getProperty("apiuri") != null && !System.getProperty("apiuri").equals("")) {
+			apiURI = System.getProperty("apiuri");
+		} else {
+			apiURI = prop.getProperty("apiuri");
+		}
+		baseURI = apiURI;
 	}
 	
 	public void initModules() {
