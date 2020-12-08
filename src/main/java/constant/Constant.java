@@ -22,6 +22,7 @@ public class Constant {
 	public static final String packagesPage = "Packages";
 	public static final String peoplePage = "People";
 	public static final String projectsPage = "Projects";
+	public static final int default_retry_count = 2;
 	public static final int httpStatusCodeOK = 200;
 	public static final int httpStatusCodeCREATED = 201;
 	public static final int httpStatusCodeACCEPTED = 202;

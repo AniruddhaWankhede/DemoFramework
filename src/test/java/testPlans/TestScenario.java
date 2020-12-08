@@ -9,10 +9,11 @@ import base.TestContext;
 import constant.Constant;
 import module.api.repositories.ApiRepositoriesModule;
 import utilities.AssertManager;
+import utilities.TestCaseRetryManager;
 
 public class TestScenario extends TestBase {
 	
-	@Test(enabled = true)
+	@Test(enabled = true, retryAnalyzer = TestCaseRetryManager.class)
 	public void verifyRepositoryDetails() {
 		
 		testStarted();
