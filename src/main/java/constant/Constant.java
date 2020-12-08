@@ -4,12 +4,12 @@ import org.apache.log4j.Logger;
 
 public class Constant {
 	public static final String repoPanelXpath = "//div[@id='org-repositories']//ul//li//div[contains(@class,'flex-auto')]";
-	public static Logger logger = Logger.getLogger("ThreadLogger: ");
+	public static Logger logger = Logger.getLogger("threadLogger");
 	public static final String configPropertiesPath = "config.properties";
 	public static final String chromeBrowser = "Google Chrome";
 	public static final String ieBrowser = "Internet Explorer";
 	public static final String extentReportFilePath = "/build/ExecutionReport.html";
-	public static final String logsFileDir = "/build/logs/";
+	public static final String logsFileDir = "build/logs/";
 	public static final String logsFileName = "threadLog.txt";
 	public static final String screenshotFileDir = "/build/screenshots/";
 	public static final String screenshotFileName = "screenshot.jpg";

@@ -12,11 +12,12 @@ import constant.Constant;
 
 public class ScreenshotManager {
 	
+	private final static String screenshotFilePath = System.getProperty("user.dir").replace("\\", "/") +  Constant.screenshotFileDir + Constant.screenshotFileName;
 	public static String captureScreenshot(WebDriver driver){
 		driver.switchTo().defaultContent();
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File srcFile = ts.getScreenshotAs(OutputType.FILE);
-		File destFile = new File(Constant.screenshotFileDir + Constant.screenshotFileName);
+		File destFile = new File(screenshotFilePath);
 		try {
 			FileUtils.copyFile(srcFile, destFile);
 		} catch (IOException e) {

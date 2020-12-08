@@ -15,6 +15,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.ExtentReportListener;
 import module.api.repositories.ApiRepositoriesModule;
 import module.repositories.RepositoriesModule;
+import utilities.AssertManager;
 import wrapper.ApiActions;
 import wrapper.WebDriverActions;
 import static io.restassured.RestAssured.*;
@@ -44,8 +45,6 @@ public class TestBase {
 	    timeout = Integer.parseInt(prop.getProperty("timeout"));
 	    initModules();
 	    initBrowser(browser);
-	    
-	    
 	}
 	
 	@BeforeMethod(alwaysRun = true)
@@ -54,6 +53,7 @@ public class TestBase {
 		WebDriver driver = TestContext.getInstance().getDriver();
 		Constant.logger.info("Successfully Instantiated Webdriver");
 		driver.get(url);
+		AssertManager.assertTrue(driver.getTitle().equals(Constant.repositoriesPageTitle), driver, "Not able to navigate to URL");
 		Constant.logger.info("Successfully Navigated to URL : " + url);
 		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 		driver.manage().window().maximize();

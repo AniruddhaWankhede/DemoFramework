@@ -1,6 +1,8 @@
 package testPlans;
 
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 import base.TestBase;
 import base.TestContext;
@@ -10,7 +12,7 @@ import utilities.AssertManager;
 
 public class TestScenario extends TestBase {
 	
-	@Test
+	@Test(enabled = true)
 	public void verifyRepositoryDetails() {
 		
 		testStarted();
@@ -18,9 +20,8 @@ public class TestScenario extends TestBase {
 		webdriverActions.navigateToTab(Constant.repositoriesPage, Constant.repositoriesPageTitle);
 		Map<String, String> actRepoDetailsMap = repositoriesModule.fetchRepoDetails();
 		Map<String, String> expRepoDetailsMap = apiRepositoriesModule.fetchRepoDetailsAPI();
-		
 		AssertManager.assertTrue(actRepoDetailsMap.equals(expRepoDetailsMap), TestContext.getInstance().getDriver(), "Repository name and description verification failed.");
-		Constant.logger.info("Successfully verified Repository names and description");
+		Constant.logger.info("Successfully verified Repository names and description with expected API data.");
 		
 		testCompleted();
 		
