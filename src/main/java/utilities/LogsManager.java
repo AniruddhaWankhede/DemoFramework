@@ -1,5 +1,11 @@
 package utilities;
 
+/*
+ * Class title: LogsManager.java
+ * Description: This class is used to append logs and to write in a text file
+ * Date Created: 08 December 2020 
+ */
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,23 +17,21 @@ import constant.Constant;
 
 public class LogsManager extends AppenderSkeleton {
 
+	// Variables declaration
 	private final ConcurrentHashMap<String, Path> threadMap = new ConcurrentHashMap<String, Path>();
 	
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean requiresLayout() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	protected void append(LoggingEvent event) {
-		// TODO Auto-generated method stub
 		String thread = Thread.currentThread().getName();
 		Path path = threadMap.get(thread);
 		if(path == null) {
@@ -42,7 +46,6 @@ public class LogsManager extends AppenderSkeleton {
 			outStream.write(bytes);
 			outStream.close();
 		}catch (IOException ex) {
-			// TODO: handle exception
 			ex.printStackTrace();
 			throw new RuntimeException();
 		}

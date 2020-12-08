@@ -1,8 +1,16 @@
 package constant;
 
+/*
+ * Class title: Constant.java
+ * Description: This class is used to declare all constants
+ * Date Created: 08 December 2020 
+ */
+
 import org.apache.log4j.Logger;
 
 public class Constant {
+	
+	// Variables declaration
 	public static final String repoPanelXpath = "//div[@id='org-repositories']//ul//li//div[contains(@class,'flex-auto')]";
 	public static Logger logger = Logger.getLogger("threadLogger");
 	public static final String configPropertiesPath = "config.properties";
